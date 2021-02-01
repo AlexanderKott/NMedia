@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ru-rRU\\values-ru-rRU.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\src\\main\\res\\values-ru-rRU\\strings.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "57,102",
+                        "endColumns": "43,48",
+                        "endOffsets": "96,146"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,99",
+                        "endColumns": "43,48",
+                        "endOffsets": "94,143"
+                    }
+                }
+            ]
+        }
+    ]
+}
