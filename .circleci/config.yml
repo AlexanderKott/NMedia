@@ -18,7 +18,7 @@ jobs:
       - run:              
            command: |
                     mkdir -p ~/artifacts 
-                    cp ./app/build/outputs/apk/debug/app-debug.apk ~/artifacts
+                    cp /home/circleci/project/app/build/outputs/apk/debug/app-debug.apk ~/artifacts
 
       - store_artifacts:
           path: ./artifacts
