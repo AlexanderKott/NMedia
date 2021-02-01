@@ -10,6 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          command:  sudo chmod 777 ./app
-                    sudo chmod +x ./gradlew 
-                   ./gradlew build
+          command: chmod 777 ./app
+      - run:
+           command: chmod +x ./gradlew           
+      - run:              
+           command: ./gradlew build        
