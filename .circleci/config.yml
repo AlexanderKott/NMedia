@@ -10,5 +10,5 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ./gradlew chmod +x
+          command: chmod +x ./gradlew 
                    ./gradlew build
