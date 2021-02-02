@@ -16,6 +16,13 @@ jobs:
         #    - source-v1-{{ .Branch }}-{{ .Revision }}
         #    - source-v1-{{ .Branch }}-
         #    - source-v1-
+        
+      #- persist_to_workspace:
+      #    root: /home/circleci/code/
+      #    paths:
+      #     - app/build/*
+      #     - .gradle/*  
+
 
       - checkout
       - restore_cache:
@@ -48,7 +55,7 @@ jobs:
       - save_cache:
          key: v1-myapp-cache
          paths:
-          - app/build
+          - app/build/*
 
       - run:              
            command: |
