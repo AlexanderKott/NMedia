@@ -25,7 +25,7 @@ jobs:
       - run:
           command: chmod 777 ./app
       - run:              
-           command: ./gradlew build 
+           command: ./gradlew :app:assembleRelease
       - run:              
            command: |
                     mkdir -p ~/artifacts 
