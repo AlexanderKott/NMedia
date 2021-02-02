@@ -12,12 +12,12 @@
         "source": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\src\\main\\res\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Alex\\AndroidStudioProjects\\Nmedia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
