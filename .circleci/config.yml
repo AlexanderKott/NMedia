@@ -39,8 +39,17 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       
+      - restore_cache:
+          key: v1-myapp-cache
+
       - run:              
            command: ./gradlew :app:assembleDebug -PpreDexEnable=false --no-daemon --max-workers=2
+      
+      - save_cache:
+         key: v1-myapp-cache
+         paths:
+          - app/build
+
       - run:              
            command: |
                     mkdir -p ~/artifacts 
