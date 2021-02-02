@@ -18,7 +18,10 @@ jobs:
 
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          keys:
+          - v1-dependencies-{{ checksum "build.gradle" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
      # - save_cache:
       #    key: source-v1-{{ .Branch }}-{{ .Revision }}
@@ -33,14 +36,14 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          key: v1-dependencies-{{ checksum "build.gradle" }}
       
       - run:              
            command: ./gradlew build -PpreDexEnable=false
       - run:              
            command: |
                     mkdir -p ~/artifacts 
-                #    cp /home/circleci/project/app/build/outputs/apk/debug/app-debug.apk ~/artifacts
+                    cp app/build/outputs/apk/debug/app-debug.apk ~/artifacts
         
       - store_artifacts:
           path: ~/artifacts 
