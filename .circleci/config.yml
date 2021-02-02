@@ -8,15 +8,20 @@ jobs:
     executor: android/android
     
     steps:
-      - checkout
-      - run:
-           command: chmod +x ./gradlew  
       - restore_cache:
           keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
-            - gradle-repo-v1-{{ .Branch }}-
-            - gradle-repo-v1-
+            - source-v1-{{ .Branch }}-{{ .Revision }}
+            - source-v1-{{ .Branch }}-
+            - source-v1-
+
+      - checkout
+      
+      - save_cache:
+          key: source-v1-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ".git"
+      - run:
+           command: chmod +x ./gradlew  
       - run:
           command: chmod 777 ./app
       - run:              
@@ -25,9 +30,6 @@ jobs:
            command: |
                     mkdir -p ~/artifacts 
                     cp /home/circleci/project/app/build/outputs/apk/debug/app-debug.apk ~/artifacts
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}   
+        
       - store_artifacts:
           path: ~/artifacts 
