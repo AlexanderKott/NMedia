@@ -6,24 +6,35 @@ orbs:
 jobs:
   build:
     executor: android/android
-    
+    working_directory: ~/code
+    environment:
+      JVM_OPTS: -Xmx3200m
     steps:
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
+     # - restore_cache:
+        #  keys:
+        #    - source-v1-{{ .Branch }}-{{ .Revision }}
+        #    - source-v1-{{ .Branch }}-
+        #    - source-v1-
 
       - checkout
-      
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ".git"
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+     # - save_cache:
+      #    key: source-v1-{{ .Branch }}-{{ .Revision }}
+        #  paths:
+         #   - ".git"
       - run:
            command: chmod +x ./gradlew  
       - run:
-          command: chmod 777 ./app
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      
       - run:              
            command: ./gradlew build -PpreDexEnable=false
       - run:              
