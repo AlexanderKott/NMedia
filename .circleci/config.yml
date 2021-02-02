@@ -18,8 +18,7 @@ jobs:
         #    - source-v1-
         
       
-      - attach_workspace:
-          at: /home/circleci/code/
+       
 
       - checkout
       - restore_cache:
@@ -34,6 +33,10 @@ jobs:
          #   - ".git"
       - run:
            command: chmod +x ./gradlew  
+
+      - restore_cache:
+          key: myBuildFolder
+
       - run:
           name: Download Dependencies
           command: ./gradlew  androidDependencies -PpreDexEnable=false --no-daemon --max-workers=2
@@ -43,22 +46,21 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       
+      
+
       #- restore_cache:
        #   key: v1-myapp-cache
 
       - run:              
            command: ./gradlew :app:assembleDebug -PpreDexEnable=false --no-daemon --max-workers=2
       
-      - persist_to_workspace:
-          root: /home/circleci/code/
+      - save_cache:
+          key: myBuildFolder
           paths:
-           - app/build/*
-           - .gradle/*  
+            - /home/circleci/code/app/build
 
-     # - save_cache:
-     #    key: v1-myapp-cache
-     #    paths:
-     #     - app/build/*
+
+    
 
       - run:              
            command: |
