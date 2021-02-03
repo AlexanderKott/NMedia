@@ -39,9 +39,6 @@ jobs:
           command: ./gradlew  androidDependencies --build-cache -PpreDexEnable=false --no-daemon --max-workers=2
       
       
-      
-      - run:              
-           command: tree -h -D
 
       - save_cache:
           paths:
