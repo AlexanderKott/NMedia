@@ -16,8 +16,15 @@ jobs:
         #    - source-v1-{{ .Branch }}-{{ .Revision }}
         #    - source-v1-{{ .Branch }}-
         #    - source-v1-
-        
-      
+      - run:    
+          command: sudo add-apt-repository universe multiverse
+     
+      - run:    
+          command: sudo apt update
+
+          
+      - run:              
+           command: sudo apt-get install tree
        
 
       - checkout
@@ -41,8 +48,7 @@ jobs:
           name: Download Dependencies
           command: ./gradlew  androidDependencies -PpreDexEnable=false --no-daemon --max-workers=2
       
-      - run:              
-           command: sudo apt-get install tree
+      
       
       - run:              
            command: tree -h -D
