@@ -16,16 +16,6 @@ jobs:
         #    - source-v1-{{ .Branch }}-{{ .Revision }}
         #    - source-v1-{{ .Branch }}-
         #    - source-v1-
-      - run:    
-          command: sudo add-apt-repository universe multiverse
-     
-      - run:    
-          command: sudo apt update
-
-          
-      - run:              
-           command: sudo apt-get install tree
-       
 
       - checkout
       - restore_cache:
@@ -46,7 +36,7 @@ jobs:
 
       - run:
           name: Download Dependencies
-          command: ./gradlew  androidDependencies -PpreDexEnable=false --no-daemon --max-workers=2
+          command: ./gradlew  androidDependencies --build-cache -PpreDexEnable=false --no-daemon --max-workers=2
       
       
       
@@ -59,12 +49,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       
       
-
-      #- restore_cache:
-       #   key: v1-myapp-cache
-
       - run:              
-           command: ./gradlew :app:assembleDebug -PpreDexEnable=false --no-daemon --max-workers=2
+           command: ./gradlew :app:assembleDebug --build-cache -PpreDexEnable=false --no-daemon --max-workers=2
       
       - save_cache:
           key: myBuildFolder
