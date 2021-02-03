@@ -42,6 +42,9 @@ jobs:
           command: ./gradlew  androidDependencies -PpreDexEnable=false --no-daemon --max-workers=2
       
       - run:              
+           command: sudo apt-get install tree
+      
+      - run:              
            command: tree -h -D
 
       - save_cache:
