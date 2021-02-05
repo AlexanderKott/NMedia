@@ -113,10 +113,10 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/views" />
+        app:layout_constraintTop_toBottomOf="@+id/shareImg" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/viewsImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -136,14 +136,14 @@
         app:layout_constraintTop_toBottomOf="@+id/PostBody" />
 
     <ImageView
-        android:id="@+id/like"
+        android:id="@+id/like_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PostBody"
-        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
     <TextView
         android:id="@+id/likesCount"
@@ -151,11 +151,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/likeCount"
-        app:layout_constraintStart_toEndOf="@+id/like"
+        app:layout_constraintStart_toEndOf="@+id/like_img"
         app:layout_constraintTop_toBottomOf="@+id/PostBody" />
 
     <ImageView
-        android:id="@+id/views"
+        android:id="@+id/shareImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -171,7 +171,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="8dp"
         android:text="@string/shareCount"
-        app:layout_constraintStart_toEndOf="@+id/views"
+        app:layout_constraintStart_toEndOf="@+id/shareImg"
         app:layout_constraintTop_toBottomOf="@+id/PostBody" />
 
 
