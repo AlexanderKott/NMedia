@@ -5,15 +5,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.viewmodels.MainVM
+import ru.netology.nmedia.viewmodels.PostViewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val viewModel : MainVM by viewModels()
+        val viewModel : PostViewModel by viewModels()
 
    viewModel.data.observe(this,{ post ->
        with(binding) {
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.likeImg.setOnClickListener {
             viewModel.like()
+
         }
 
         binding.shareImg.setOnClickListener {
