@@ -6,30 +6,61 @@ orbs:
 jobs:
   build:
     executor: android/android
-    
+    working_directory: ~/code
+    environment:
+      JVM_OPTS: -Xmx3200m
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m" -Dkotlin.compiler.execution.strategy=in-process'
     steps:
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
+     # - restore_cache:
+        #  keys:
+        #    - source-v1-{{ .Branch }}-{{ .Revision }}
+        #    - source-v1-{{ .Branch }}-
+        #    - source-v1-
 
       - checkout
-      
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ".git"
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          
+          # fallback to using the latest cache if no exact match is found
+          
+
+     # - save_cache:
+      #    key: source-v1-{{ .Branch }}-{{ .Revision }}
+        #  paths:
+         #   - ".git"
       - run:
            command: chmod +x ./gradlew  
+
+      - restore_cache:
+          key: myBuildFolder
+
       - run:
-          command: chmod 777 ./app
+          name: Download Dependencies
+          command: ./gradlew  androidDependencies --build-cache -PpreDexEnable=false --no-daemon --max-workers=2
+      
+      
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      
+      
       - run:              
-           command: ./gradlew :app:assembleRelease
+           command: ./gradlew :app:assembleDebug --build-cache -PpreDexEnable=false --no-daemon --max-workers=2
+      
+      - save_cache:
+          key: myBuildFolder
+          paths:
+            - /home/circleci/code/app/build
+
+
+    
+
       - run:              
            command: |
                     mkdir -p ~/artifacts 
-                    cp /home/circleci/project/app/build/outputs/apk/debug/app-debug.apk ~/artifacts
+                    cp app/build/outputs/apk/debug/app-debug.apk ~/artifacts
         
       - store_artifacts:
           path: ~/artifacts 
