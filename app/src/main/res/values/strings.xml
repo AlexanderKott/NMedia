@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Nmedia</string>
     <string name="welcome_text">Nmedia!</string>
+    <string name="post_body" translatable="false">Команда Нетологии помогает освоить новую профессию и навыки из любой точки мира. Это даёт человеку возможность жить более счастливой и наполненной жизнью: заниматься любимым делом, путешествовать, проводить время с семьёй и в целом — гармонично развиваться. Большинство наших студентов проходят через эту важную трансформацию и становятся успешными. Для нас это показатель, что мы двигаемся в правильном направлении.  netology.ru</string>
+    <string name="date" translatable="false">25 мая в 18:20</string>
+    <string name="caption" translatable="false">Нетология. Университет интернет-профессий</string>
+    <string name="viewsCount" translatable="false">5</string>
+    <string name="shareCount" translatable="false">15</string>
+    <string name="likeCount" translatable="false">25</string>
+
 
 </resources>
