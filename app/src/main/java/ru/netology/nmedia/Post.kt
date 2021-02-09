@@ -1,3 +1,4 @@
 package ru.netology.nmedia
 
-data class Post (var likesCount : Int, var like : Boolean, var shareCount : Int, var viewsCount: Int)
+data class Post (val likesCount : Int, val like : Boolean, val shareCount : Int, val viewsCount: Int,
+val caption : String, val body : String, val published : String)
