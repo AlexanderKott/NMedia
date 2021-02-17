@@ -16,12 +16,11 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val viewModel : PostViewModel by viewModels()
-        val adapter = PostsAdapter ({
-            viewModel.like(it.id)
-        }, {viewModel.share(it.id)} )
+        val adapter = PostsAdapter (
+           likeListener = { viewModel.like(it.id)},
+           shareListener = {viewModel.share(it.id)})
 
         binding.list.adapter = adapter
-        binding.list.setLayoutManager (LinearLayoutManager(this) )
 
    viewModel.data.observe(this,{ posts ->
      adapter.submitList(posts)
