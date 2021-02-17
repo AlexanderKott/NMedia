@@ -7,6 +7,10 @@
     <string name="viewsCount" translatable="false">5</string>
     <string name="shareCount" translatable="false">15</string>
     <string name="likeCount" translatable="false">25</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="newpost">new</string>
+    <string name="empty_new_text">Чото пусто</string>
 
 
 </resources>
