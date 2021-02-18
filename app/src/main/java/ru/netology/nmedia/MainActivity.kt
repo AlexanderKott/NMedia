@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 clearFocus()
                 setText("")
                 hideKeyboard()
+                binding.cancelEditing.isGone = true
             }
 
 
