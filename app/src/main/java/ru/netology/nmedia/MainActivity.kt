@@ -2,7 +2,9 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isGone
 
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewmodels.PostViewModel
@@ -12,27 +14,66 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val viewModel : PostViewModel by viewModels()
+        val viewModel: PostViewModel by viewModels()
+        val adapter = PostsAdapter(object : PostListener {
+            override fun onLikeListener(post: Post) {
+                viewModel.like(post.id)
+            }
 
-   viewModel.data.observe(this,{ post ->
-       with(binding) {
-           ShareCount.text = digitToString(post.shareCount)   //
-           likesCount.text = digitToString(post.likesCount)
-           viewsCount.text = digitToString(post.viewsCount)
-           likeImg.setImageResource(
-               if (post.like) R.drawable.ic_baseline_favorite_24
-               else R.drawable.ic_baseline_favorite_border_24)
-       }
-   })
+            override fun onShareListener(post: Post) {
+                viewModel.share(post.id)
+            }
+
+            override fun onDeleteListener(post: Post) {
+                with(binding.editText) {
+                    viewModel.remove(post.id)
+                    setText("")
+                    clearFocus()
+                    binding.cancelEditing.isGone = true
+                    hideKeyboard()
+                }
+            }
+
+            override fun onEditListener(post: Post) {
+                viewModel.editPost(post)
+                binding.editText.setText(post.body)
+                binding.editText.requestFocus()
+                binding.cancelEditing.isGone = false
+            }
+        })
 
 
-        binding.likeImg.setOnClickListener {
-            viewModel.like()
-
+        binding.cancelEditing.setOnClickListener {
+            viewModel.cancelEditing()
+            binding.editText.setText("")
+            binding.editText.clearFocus()
+            binding.cancelEditing.isGone = true
+            it.hideKeyboard()
         }
 
-        binding.shareImg.setOnClickListener {
-            viewModel.share()
+        binding.list.adapter = adapter
+
+        viewModel.data.observe(this, { posts ->
+            adapter.submitList(posts)
+        })
+
+        binding.enterText.setOnClickListener {
+            with(binding.editText) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(this@MainActivity,
+                            context.getString(R.string.empty_new_text),
+                            Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+                viewModel.changePost(text.toString().trim())
+                clearFocus()
+                setText("")
+                hideKeyboard()
+                binding.cancelEditing.isGone = true
+            }
+
+
         }
 
     }
