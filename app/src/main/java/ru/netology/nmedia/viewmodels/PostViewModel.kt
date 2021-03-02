@@ -12,6 +12,6 @@ class PostViewModel : ViewModel() {
     fun share(id : Int) = repo.sharePost(id)
     fun remove(id : Int) = repo.removePost(id)
     fun changePost(txt : String) = repo.newPost(txt)
-    fun editPost(post : Post) = repo.editPost(post)
+    fun markPostForEdit(post : Post) = repo.editPost(post)
     fun cancelEditing()  = repo.cancelEditing()
 }

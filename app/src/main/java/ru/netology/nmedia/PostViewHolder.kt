@@ -21,11 +21,9 @@ class PostViewHolder(
              PostBody.text = post.body
              caption.text = post.caption
              date.text = post.published
+             likeImg.isChecked = post.like
 
-//            likeImg.setImageResource(
-//                if (post.like) R.drawable.ic_baseline_favorite_24
-//                else R.drawable.ic_baseline_favorite_border_24)
-//
+
         }
         binding.more.setOnClickListener {
             PopupMenu(it.context, it).apply {
@@ -52,6 +50,12 @@ class PostViewHolder(
             postListener.onLikeListener(post)
 
         }
+
+        binding.youtubePrev.setOnClickListener {
+            postListener.onYoutubeListener(post)
+
+        }
+
 
         binding.shareImg.setOnClickListener {
             postListener.onShareListener(post)
