@@ -14,19 +14,19 @@ class PostViewHolder(
     fun bind(post : Post){
         binding.apply {
 
-            ShareCount.text = digitToString(post.shareCount)   //
-            likesCount.text = digitToString(post.likesCount)
-            viewsCount.text = digitToString(post.viewsCount)
+            shareImg.text = digitToString(post.shareCount)   //
+            likeImg.text = digitToString(post.likesCount)
+            viewsImg.text = digitToString(post.viewsCount)
 
              PostBody.text = post.body
              caption.text = post.caption
              date.text = post.published
 
-            likeImg.setImageResource(
-                if (post.like) R.drawable.ic_baseline_favorite_24
-                else R.drawable.ic_baseline_favorite_border_24)
+//            likeImg.setImageResource(
+//                if (post.like) R.drawable.ic_baseline_favorite_24
+//                else R.drawable.ic_baseline_favorite_border_24)
+//
         }
-
         binding.more.setOnClickListener {
             PopupMenu(it.context, it).apply {
                 inflate(R.menu.options)

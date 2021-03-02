@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:gravity="start"
-    android:orientation="horizontal"
-    android:clickable="true"
     android:background="?attr/selectableItemBackground"
-    >
+    android:clickable="true"
+    android:gravity="start"
+    android:orientation="horizontal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -117,71 +116,45 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shareImg" />
+            app:layout_constraintTop_toBottomOf="@+id/viewsImg" />
 
-        <ImageView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/viewsImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="3dp"
-            app:layout_constraintEnd_toStartOf="@+id/viewsCount"
-            app:layout_constraintTop_toBottomOf="@+id/PostBody"
-            app:srcCompat="@drawable/ic_baseline_visibility_24" />
-
-        <TextView
-            android:id="@+id/viewsCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
             android:text="@string/viewsCount"
+            app:icon="@drawable/ic_baseline_visibility_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PostBody" />
 
-        <ImageView
-            android:id="@+id/like_img"
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/likeImg"
+            android:checkable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PostBody"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+            app:icon="@drawable/like_selector"
+            style="@style/MyButtonStyle"/>
 
-        <TextView
-            android:id="@+id/likesCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/likeCount"
-            app:layout_constraintStart_toEndOf="@+id/like_img"
-            app:layout_constraintTop_toBottomOf="@+id/PostBody" />
-
-        <ImageView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/shareImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/likesCount"
+            app:layout_constraintStart_toEndOf="@+id/likeImg"
             app:layout_constraintTop_toBottomOf="@+id/PostBody"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
+            app:icon="@drawable/ic_baseline_share_24" />
 
-        <TextView
-            android:id="@+id/ShareCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/shareCount"
-            app:layout_constraintStart_toEndOf="@+id/shareImg"
-            app:layout_constraintTop_toBottomOf="@+id/PostBody" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
