@@ -11,17 +11,17 @@ class PostViewHolder(
     private val postListener: PostListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(post : Post){
+    fun bind(post: Post) {
         binding.apply {
 
-            shareImg.text = digitToString(post.shareCount)   //
+            shareImg.text = digitToString(post.shareCount)
             likeImg.text = digitToString(post.likesCount)
             viewsImg.text = digitToString(post.viewsCount)
 
-             PostBody.text = post.body
-             caption.text = post.caption
-             date.text = post.published
-             likeImg.isChecked = post.like
+            PostBody.text = post.body
+            caption.text = post.caption
+            date.text = post.published
+            likeImg.isChecked = post.like
 
 
         }
@@ -30,7 +30,7 @@ class PostViewHolder(
                 inflate(R.menu.options)
                 setOnMenuItemClickListener { item ->
 
-                    when(item.itemId){
+                    when (item.itemId) {
                         R.id.delete -> {
                             postListener.onDeleteListener(post)
                             true
