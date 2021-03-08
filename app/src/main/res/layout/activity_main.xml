@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:padding="@dimen/layout_padding"
     tools:context=".MainActivity">
 
 
@@ -13,16 +12,18 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/enterText"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="5dp"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/post_card" />
 
     <ImageButton
         android:id="@+id/enterText"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_create_24" />

@@ -8,6 +8,6 @@ interface PostRepository {
     fun sharePost(id: Int)
     fun removePost(id: Int)
     fun newPost(text: String)
-    fun editPost(post: Post)
+    fun markPostForEdit(post: Post)
     fun cancelEditing()
 }
