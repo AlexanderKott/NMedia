@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">НМедиа</string>
     <string name="welcome_text">НМедиа!</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="newpost">new</string>
+    <string name="empty_new_text">Чото пусто</string>
+    <string name="chooser">Выбор</string>
 </resources>
