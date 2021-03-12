@@ -13,7 +13,7 @@ class PostRepositoryImpl(val context: Context) : PostRepository {
 
     private var posts = listOf<Post>()
 
-    private var etalone = Post(
+    private val etalone = Post(
         0, 0, false, 0, 0, "new post",
         "", "now",
         "eX2qFMC8cFo"
@@ -33,7 +33,6 @@ class PostRepositoryImpl(val context: Context) : PostRepository {
             .getString("firstTime", "true")
         Log.e("abc= ",pref)
         if (pref == null || pref == "true") {
-            Log.e("abc= ","if")
             prePopulate()
             //save to disc
             saveDataToDisc(sampleData())
@@ -107,17 +106,19 @@ class PostRepositoryImpl(val context: Context) : PostRepository {
         saveDataToDisc(posts)
     }
 
-    override fun newPost(text: String) {
-        if (editablePost.id == 0) {
-            posts = listOf(etalone.copy(id = postIt++, body = text)) + posts
-
-        } else {
+    override fun changePost(text: String) {
+        if (editablePost.id == 0) {  // add new
+            posts = listOf(etalone.copy(id = ++postIt , body = text)) + posts
+        } else { //edit post
             posts = posts.map { if (it.id == editablePost.id) it.copy(body = text) else it }
             editablePost.id = 0
+
         }
 
         data.value = posts
         saveDataToDisc(posts)
+
+
     }
 
 

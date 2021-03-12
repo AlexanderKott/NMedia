@@ -7,7 +7,7 @@ interface PostRepository {
     fun likePost(id: Int)
     fun sharePost(id: Int)
     fun removePost(id: Int)
-    fun newPost(text: String)
+    fun changePost(text: String)
     fun markPostForEdit(post: Post)
     fun cancelEditing()
 }
