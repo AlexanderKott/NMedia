@@ -1,12 +1,13 @@
 package ru.netology.nmedia
 
 import androidx.lifecycle.LiveData
+import ru.netology.nmedia.data.Post
 
 interface PostRepository {
     fun getAll(): LiveData<List<Post>>
-    fun likePost(id: Int)
-    fun sharePost(id: Int)
-    fun removePost(id: Int)
+    fun likePost(id: Long)
+    fun sharePost(id: Long)
+    fun removePost(id: Long)
     fun changePost(text: String)
     fun markPostForEdit(post: Post)
     fun cancelEditing()

@@ -1,9 +1,8 @@
 package ru.netology.nmedia
 
-import android.util.Log
-import android.view.View
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.PostCardBinding
 
 class PostViewHolder(

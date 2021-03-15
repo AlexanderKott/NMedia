@@ -1,25 +1,31 @@
 package ru.netology.nmedia
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import ru.netology.nmedia.data.App
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.FragmentFeedBinding
+import ru.netology.nmedia.viewmodels.ModelFactory
 import ru.netology.nmedia.viewmodels.PostViewModel
 
 
 class FeedFragment : Fragment() {
 
-    private val viewModel: PostViewModel by viewModels(
-        ownerProducer = { this.requireParentFragment() })
+    private  val viewModel: PostViewModel  by navGraphViewModels(R.id.nav_main) {
+        ModelFactory(App.getApp().getDatabase())
+    }
 
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
@@ -37,7 +43,7 @@ class FeedFragment : Fragment() {
 
         val adapter = PostsAdapter(object : PostListener {
             override fun onLikeListener(post: Post) {
-                viewModel.like(post.id)
+                viewModel.like(post)
             }
 
             override fun onYoutubeListener(post: Post) {
@@ -63,12 +69,12 @@ class FeedFragment : Fragment() {
                 }
                 val shareIntent = Intent.createChooser(intent, getString(R.string.chooser))
                 startActivity(shareIntent)
-                viewModel.share(post.id)
+                viewModel.share(post)
             }
 
             override fun onDeleteListener(post: Post) {
-                viewModel.cancelEditing()
-                viewModel.remove(post.id)
+                 viewModel.cancelEditing()
+                viewModel.remove(post)
 
             }
 
@@ -85,7 +91,8 @@ class FeedFragment : Fragment() {
 
         viewModel.data.observe(viewLifecycleOwner, { posts ->
             adapter.submitList(posts)
-        })
+            Log.e("abc","posts= ${posts.size}")
+         })
 
         binding.enterText.setOnClickListener {
             viewModel.cancelEditing()

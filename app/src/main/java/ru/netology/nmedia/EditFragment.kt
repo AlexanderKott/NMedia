@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import ru.netology.nmedia.data.App
 import ru.netology.nmedia.databinding.FragmentEditBinding
+import ru.netology.nmedia.viewmodels.ModelFactory
 import ru.netology.nmedia.viewmodels.PostViewModel
 
 
 class EditFragment : Fragment() {
-    private val viewModel: PostViewModel by viewModels(
-        ownerProducer = { this.requireParentFragment() })
+
+    private  val viewModel: PostViewModel  by navGraphViewModels(R.id.nav_main)
 
     private var _binding: FragmentEditBinding? = null
     private val binding get() = _binding!!
@@ -28,11 +31,12 @@ class EditFragment : Fragment() {
 
 
     override fun onViewCreated(vie: View, savedInstanceState: Bundle?) {
+
         binding.editText.setText(arguments?.getString("postT") )
         binding.editText.requestFocus()
 
         binding.fab.setOnClickListener { view ->
-            if (!binding.editText.text.isBlank()) {
+            if (binding.editText.text.isNotBlank()) {
                 val content = binding.editText.text.toString()
                 viewModel.changePost(content)
                 viewModel.cancelEditing()

@@ -2,6 +2,7 @@ package ru.netology.nmedia
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.databinding.PostCardBinding
 
 class PostsAdapter(private val postListener: PostListener)
